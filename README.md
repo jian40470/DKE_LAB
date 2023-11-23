@@ -1,2 +1,2 @@
-# DKE_LAB
+# DKE_LAB project
 drow circle row*column
