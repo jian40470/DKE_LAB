@@ -2,7 +2,34 @@ import matplotlib.pyplot as plt
 # 設置行列
 rows = 6
 columns = 10
-numer_list = [int(num) for num in input("Enter multiple values for numer separated by spaces: ").split()]
+LINE_1 = [59,201, 192, 275, 274, 273, 272, 271,419]
+LINE_2 = [40, 291, 290, 289, 417]
+LINE_3 = [416]
+LINE_4 = [78, 311, 310, 309, 308, 307, 415]
+LINE_5 = [412]
+LINE_6 = [146, 343, 411]
+LINE_7= [407]
+LINE_8 = [111, 245, 254, 263, 406]
+LINE_9 = [80, 229, 238, 331, 330, 246, 255, 264, 404]
+LINE_10 = [152, 265, 402]
+LINE_11 = [401]
+LINE_12 = [82, 230, 239, 248, 257, 266, 400]
+LINE_13 = [399]
+LINE_14 = [47, 213, 222, 231, 240, 249, 258, 267, 398]
+LINE_15 = [397]
+LINE_16 = [158, 268, 396]
+LINE_17= [395]
+LINE_18 = [393]
+LINE_19 = [25, 278, 279, 280, 281, 195, 204, 300, 301, 214, 223, 232, 241, 338, 339, 340, 341, 252, 261, 270, 392]
+LINE_20 = [391]
+LINE_21 = [105, 322, 323, 324, 385]
+LINE_22 = [386]
+LINE_23 = [53, 306, 383]
+LINE_24 = [382]
+LINE_25 = [69, 206, 197, 286, 287, 288, 381,402]
+numer_list = [LINE_1, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6, LINE_7, LINE_8, LINE_9, LINE_10, 
+        LINE_11, LINE_12, LINE_13,  LINE_14,  LINE_15, LINE_16, LINE_17, LINE_18, LINE_19, LINE_20, 
+        LINE_21, LINE_22, LINE_23, LINE_24,LINE_25]
 # 創建一個圖形
 fig, ax = plt.subplots()
 # 加入參數
@@ -124,17 +151,14 @@ def add_outer_rectangles(ax, side_rectangle_no, circle_spacing, square_spacing, 
         square_y_bottom = -square_side / 2
         add_square(ax, square_x_bottom, square_y_bottom, square_side, outer_number, color='gray')
         outer_number += 1
-
     for col in range(side_rectangle_no):
         square_x_bottom = col * (circle_spacing + square_spacing - bottom_spacing) + 1
         square_y_bottom = (circle_spacing + 2 * circle_radius) * (rows) - 0.3
         add_square(ax, square_x_bottom, square_y_bottom, square_side, outer_number_3 + (side_rectangle_no - col - 1), color='gray')
-
     for row in range(side_rectangle_number):
         square_x_bottom = -square_side / 2
         square_y_bottom = row * (circle_spacing + square_spacing - bottom_spacing) + 1
         add_square(ax, square_x_bottom, square_y_bottom, square_side, outer_number_4 + side_rectangle_number - row, color='gray')
-
     for row in range(side_rectangle_number):
         square_x_bottom = (circle_spacing + 2 * circle_radius) * (columns) - 0.3
         square_y_bottom = row * (circle_spacing + square_spacing - bottom_spacing) + 1
@@ -163,14 +187,15 @@ def add_cross_line(ax, x, y, side, COUT,bout, color='purple'):
     bottom_right_x = x + 0.5 * side + circle_radius + 0.5 * square_spacing
     bottom_right_y = y - 0.5 * side - circle_radius - 0.5 * square_spacing
     for numer in numer_list:
-        if numer==COUT:
-            draw_line(ax, x - 0.5 * side, y - 0.5 * side, bottom_left_x, bottom_left_y, label=str(COUT) , color=color)
-        elif numer==bout:
-            draw_line(ax, x + 0.5 * side, y - 0.5 * side, bottom_right_x, bottom_right_y, label=str(bout) , color=color)
-        elif numer==aout:
-            draw_line(ax, x - 0.5 * side, y + 0.5 * side, top_left_x, top_left_y, label=str(aout) , color=color)
-        elif numer==dout:
-            draw_line(ax, x + 0.5 * side, y + 0.5 * side, top_right_x, top_right_y, label=str(dout) , color=color)   
+        for num in numer:
+            if num==COUT:
+                draw_line(ax, x - 0.5 * side, y - 0.5 * side, bottom_left_x, bottom_left_y, label=str(COUT) , color=color)
+            elif num==bout:
+                draw_line(ax, x + 0.5 * side, y - 0.5 * side, bottom_right_x, bottom_right_y, label=str(bout) , color=color)
+            elif num==aout:
+                draw_line(ax, x - 0.5 * side, y + 0.5 * side, top_left_x, top_left_y, label=str(aout) , color=color)
+            elif num==dout:
+                draw_line(ax, x + 0.5 * side, y + 0.5 * side, top_right_x, top_right_y, label=str(dout) , color=color)   
 # 繪圖
 for row in range(rows):
     for col in range(columns):
@@ -210,48 +235,54 @@ for row in range(rows):
             aout += 2
             dout += 2 
             cv=2*(columns-1)
-            if (COUT-1)%18==0:
+            if (COUT-1)%cv==0:
                 COUT+=cv
                 bout+=cv
                 aout+=cv
                 dout += cv
             for numer in numer_list:
-                if numer==x_line_number_2:
-                    draw_balance_extended_down_lines(ax, center_x, center_y, square_side, up_extension_length, down_extension_length, x_line_number_2,color='purple')
-                if numer==x_line_number:
-                    draw_balance_extended_up_lines(ax, center_x, center_y, square_side, up_extension_length, down_extension_length, x_line_number,color='purple')
+                for num in numer:
+                    if num==x_line_number_2:
+                        draw_balance_extended_down_lines(ax, center_x, center_y, square_side, up_extension_length, down_extension_length, x_line_number_2,color='purple')
+                    if num==x_line_number:
+                        draw_balance_extended_up_lines(ax, center_x, center_y, square_side, up_extension_length, down_extension_length, x_line_number,color='purple')
             x_line_number+=1
             x_line_number_2+=1
             if (x_line_number-initial_x_line_number)%9==0:
                 x_line_number+=columns-1
                 x_line_number_2+=columns-1
             for numer in numer_list:
-                if numer==y_line_number:
-                    draw_straight_left_lines(ax, center_x, center_y, square_side,left_extension_length, right_extension_length, y_line_number,color='purple')
-                if numer==y_line_number_even:
-                    draw_straight_right_lines(ax, center_x, center_y, square_side,left_extension_length, right_extension_length, y_line_number_even,color='purple')   
+                for num in numer:
+                    if num==y_line_number:
+                        draw_straight_left_lines(ax, center_x, center_y, square_side,left_extension_length, right_extension_length, y_line_number,color='purple')
+                    if num==y_line_number_even:
+                        draw_straight_right_lines(ax, center_x, center_y, square_side,left_extension_length, right_extension_length, y_line_number_even,color='purple')   
             y_line_number+=2
             y_line_number_even+=2 
 for col in range(side_rectangle_no):
     outer_counting+=1
     for numer in numer_list:
-        if numer==outer_counting-1:
-            connect_outer_rectangles_bottom(ax, side_rectangle_no, circle_spacing, square_spacing, bottom_spacing, square_side, outer_counting-1)
+        for num in numer:
+            if num==outer_counting-1:
+                connect_outer_rectangles_bottom(ax, side_rectangle_no, circle_spacing, square_spacing, bottom_spacing, square_side, outer_counting-1)
 for row in range(side_rectangle_number):
     outer_counting+=1
     for numer in numer_list:
-        if numer==outer_counting-1:
-            connect_outer_rectangles_right(ax, side_rectangle_no, outer_counting-1, circle_spacing, square_spacing, bottom_spacing, square_side)
+        for num in numer:
+            if num==outer_counting-1:
+                connect_outer_rectangles_right(ax, side_rectangle_no, outer_counting-1, circle_spacing, square_spacing, bottom_spacing, square_side)
 for col in range(side_rectangle_no):
     top_number-=1
     for numer in numer_list:
-        if numer==top_number:
-            connect_outer_rectangles_top(ax, side_rectangle_no, top_number, circle_spacing, square_spacing, bottom_spacing, square_side, rows, columns, circle_radius)
+        for num in numer:
+            if num==top_number:
+                connect_outer_rectangles_top(ax, side_rectangle_no, top_number, circle_spacing, square_spacing, bottom_spacing, square_side, rows, columns, circle_radius)
 for row in range(side_rectangle_number):
     right_number-=1
     for numer in numer_list:
-        if numer==right_number+1:
-            connect_outer_rectangles_left(ax, side_rectangle_number,right_number+1, circle_spacing, square_spacing, bottom_spacing, square_side, rows, columns, circle_radius)   
+        for num in numer:
+            if num==right_number+1:
+                connect_outer_rectangles_left(ax, side_rectangle_number,right_number+1, circle_spacing, square_spacing, bottom_spacing, square_side, rows, columns, circle_radius)   
 # 添加外圍正方形
 add_outer_rectangles(ax, side_rectangle_no, circle_spacing, square_spacing, bottom_spacing, square_side, outer_number, outer_number_2, outer_number_3, outer_number_4)
 # 设置座標範圍
